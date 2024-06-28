@@ -1,13 +1,26 @@
 [versions]
 agp = "8.5.0"
-kotlin = "1.9.0"
-coreKtx = "1.10.1"
+kotlin = "1.9.22"
+coreKtx = "1.13.1"
 junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
-lifecycleRuntimeKtx = "2.6.1"
-activityCompose = "1.8.0"
-composeBom = "2024.04.01"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+lifecycleRuntimeKtx = "2.8.2"
+activityCompose = "1.9.0"
+composeBom = "2024.06.00"
+androidx-core = "1.0.1"
+nav-version = "2.7.7"
+hilt = "2.45"
+ksp = "1.9.22-1.0.16"
+hilt-nav-compose = "1.0.0"
+retrofit = "2.9.0"
+coil = "2.6.0"
+datastore = "1.1.1"
+compose-foundation = "1.6.8"
+paging_version = "3.3.0"
+room_version = "2.6.1"
+parcelize = "1.9.21"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -24,8 +37,27 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+icons = { group = "androidx.compose.material", name = "material-icons-extended" }
+splash-core = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidx-core" }
+compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "nav-version" }
+dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-nav-compose" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-gsonConverter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+coil-core = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+datastore-core = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
+compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "compose-foundation" }
+pagging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging_version" }
+pagging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging_version" }
+room-core = { group = "androidx.room", name = "room-runtime", version.ref = "room_version" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room_version" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room_version" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "parcelize" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
