@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.parcelize)
 }
 
 android {
@@ -40,7 +43,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.10"
     }
     packaging {
         resources {
@@ -55,6 +58,46 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
+
+    //Splash Api
+    implementation(libs.splash.core)
+
+    //Compose Navigation
+    implementation(libs.compose.navigation)
+
+    //Dagger Hilt
+    implementation(libs.dagger.hilt)
+    implementation(libs.hilt.navigation.compose)
+    ksp(libs.hilt.compiler)
+
+    //Retrofit
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.gsonConverter)
+
+    //Coil
+    implementation(libs.coil.core)
+
+    //DataStore
+    implementation(libs.datastore.core)
+
+    //Compose Foundation
+    implementation(libs.compose.foundation)
+
+    //Paging 3
+    implementation(libs.pagging.runtime)
+    implementation(libs.pagging.compose)
+
+    //Room
+    implementation(libs.room.core)
+    ksp(libs.room.compiler)
+    implementation(libs.room.ktx)
+
+    //Icons
+    implementation(libs.icons)
+
+    //Accompanist
+
+
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
@@ -66,4 +109,5 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
 }
