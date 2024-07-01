@@ -3,7 +3,7 @@ package com.smialko.newsapp.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.smialko.newsapp.data.remote.dto.NewsApi
+import com.smialko.newsapp.data.remote.NewsApi
 import com.smialko.newsapp.data.remote.dto.NewsPagingSource
 import com.smialko.newsapp.domain.model.Article
 import com.smialko.newsapp.domain.repository.NewsRepository
