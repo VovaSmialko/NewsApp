@@ -2,8 +2,8 @@ package com.smialko.newsapp.data.remote.dto
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.smialko.newsapp.data.remote.NewsApi
 import com.smialko.newsapp.domain.model.Article
-import com.smialko.newsapp.util.Constants.API_KEY
 
 class NewsPagingSource(
     private val newsApi: NewsApi,

@@ -1,5 +1,6 @@
-package com.smialko.newsapp.data.remote.dto
+package com.smialko.newsapp.data.remote
 
+import com.smialko.newsapp.data.remote.dto.NewsResponse
 import com.smialko.newsapp.util.Constants.API_KEY
 import retrofit2.http.GET
 import retrofit2.http.Query
