@@ -1,6 +1,10 @@
 package com.smialko.newsapp.di
 
 import android.app.Application
+import androidx.room.Room
+import com.smialko.newsapp.data.local.NewsDao
+import com.smialko.newsapp.data.local.NewsDatabase
+import com.smialko.newsapp.data.local.NewsTypeConvertor
 import com.smialko.newsapp.data.manger.LocalUserMangerImpl
 import com.smialko.newsapp.data.remote.NewsApi
 import com.smialko.newsapp.data.repository.NewsRepositoryImpl
@@ -13,6 +17,7 @@ import com.smialko.newsapp.domain.usecases.news.GetNews
 import com.smialko.newsapp.domain.usecases.news.NewsUseCases
 import com.smialko.newsapp.domain.usecases.news.SearchNews
 import com.smialko.newsapp.util.Constants.BASE_URL
+import com.smialko.newsapp.util.Constants.NEWS_DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -68,4 +73,24 @@ object AppModule {
             searchNews = SearchNews(newsRepository)
         )
     }
+
+    @Provides
+    @Singleton
+    fun provideNewsData(
+        application: Application
+    ): NewsDatabase {
+        return Room.databaseBuilder(
+            context = application,
+            klass = NewsDatabase::class.java,
+            name = NEWS_DATABASE_NAME
+        ).addTypeConverter(NewsTypeConvertor())
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideNewsDao(
+        newsDatabase: NewsDatabase
+    ): NewsDao = newsDatabase.newsDao
 }
