@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import com.smialko.newsapp.R
+import com.smialko.newsapp.domain.model.Article
 import com.smialko.newsapp.presentation.common.ArticleList
 import com.smialko.newsapp.presentation.nvgraph.Route
 import com.smialko.newsapp.presentation.onboarding.Dimens.MediumPadding1
@@ -20,7 +21,7 @@ import com.smialko.newsapp.presentation.onboarding.Dimens.MediumPadding1
 @Composable
 fun BookmarkScreen(
     state: BookmarkState,
-    navigate: (String) -> Unit
+    navigateToDetails: (Article) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -34,6 +35,6 @@ fun BookmarkScreen(
             color = colorResource(id = R.color.text_title)
         )
         Spacer(modifier = Modifier.height(MediumPadding1))
-        ArticleList(articles = state.articles, onClick = { navigate(Route.BookmarkScreen.route) })
+        ArticleList(articles = state.articles, onClick = { navigateToDetails(it) })
     }
 }
