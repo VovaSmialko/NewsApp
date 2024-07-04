@@ -9,6 +9,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.smialko.newsapp.presentation.bookmark.BookmarkScreen
+import com.smialko.newsapp.presentation.bookmark.BookmarkViewModel
 import com.smialko.newsapp.presentation.home.HomeScreen
 import com.smialko.newsapp.presentation.home.HomeViewModel
 import com.smialko.newsapp.presentation.onboarding.OnBoardingScreen
@@ -44,11 +46,8 @@ fun NavGraph(
             composable(
                 route = Route.NewsNavigatorScreen.route
             ) {
-                val viewModel: SearchViewModel = hiltViewModel()
-                SearchScreen(
-                    state = viewModel.state.value,
-                    event = viewModel::onEvent,
-                    navigate = {})
+                val viewModel: BookmarkViewModel = hiltViewModel()
+                BookmarkScreen(state = viewModel.state.value, navigate = {})
             }
         }
     }

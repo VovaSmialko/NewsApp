@@ -13,9 +13,12 @@ import com.smialko.newsapp.domain.repository.NewsRepository
 import com.smialko.newsapp.domain.usecases.app_entry.AppEntryUseCases
 import com.smialko.newsapp.domain.usecases.app_entry.ReadAppEntry
 import com.smialko.newsapp.domain.usecases.app_entry.SaveAppEntry
+import com.smialko.newsapp.domain.usecases.news.DeleteArticle
 import com.smialko.newsapp.domain.usecases.news.GetNews
 import com.smialko.newsapp.domain.usecases.news.NewsUseCases
 import com.smialko.newsapp.domain.usecases.news.SearchNews
+import com.smialko.newsapp.domain.usecases.news.SelectArticle
+import com.smialko.newsapp.domain.usecases.news.UpsertArticle
 import com.smialko.newsapp.util.Constants.BASE_URL
 import com.smialko.newsapp.util.Constants.NEWS_DATABASE_NAME
 import dagger.Module
@@ -66,11 +69,15 @@ object AppModule {
     @Provides
     @Singleton
     fun provideNewsUseCases(
-        newsRepository: NewsRepository
+        newsRepository: NewsRepository,
+        newsDao: NewsDao
     ): NewsUseCases {
         return NewsUseCases(
             getNews = GetNews(newsRepository),
-            searchNews = SearchNews(newsRepository)
+            searchNews = SearchNews(newsRepository),
+            upsertArticle = UpsertArticle(newsDao),
+            deleteArticle = DeleteArticle(newsDao),
+            selectArticle = SelectArticle(newsDao)
         )
     }
 
