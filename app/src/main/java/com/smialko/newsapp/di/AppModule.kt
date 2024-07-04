@@ -18,6 +18,7 @@ import com.smialko.newsapp.domain.usecases.news.GetNews
 import com.smialko.newsapp.domain.usecases.news.NewsUseCases
 import com.smialko.newsapp.domain.usecases.news.SearchNews
 import com.smialko.newsapp.domain.usecases.news.SelectArticle
+import com.smialko.newsapp.domain.usecases.news.SelectArticles
 import com.smialko.newsapp.domain.usecases.news.UpsertArticle
 import com.smialko.newsapp.util.Constants.BASE_URL
 import com.smialko.newsapp.util.Constants.NEWS_DATABASE_NAME
@@ -63,21 +64,22 @@ object AppModule {
     @Provides
     @Singleton
     fun provideNewsRepository(
-        newsApi: NewsApi
-    ): NewsRepository = NewsRepositoryImpl(newsApi)
+        newsApi: NewsApi,
+        newsDao: NewsDao
+    ): NewsRepository = NewsRepositoryImpl(newsApi, newsDao)
 
     @Provides
     @Singleton
     fun provideNewsUseCases(
-        newsRepository: NewsRepository,
-        newsDao: NewsDao
+        newsRepository: NewsRepository
     ): NewsUseCases {
         return NewsUseCases(
             getNews = GetNews(newsRepository),
             searchNews = SearchNews(newsRepository),
-            upsertArticle = UpsertArticle(newsDao),
-            deleteArticle = DeleteArticle(newsDao),
-            selectArticle = SelectArticle(newsDao)
+            upsertArticle = UpsertArticle(newsRepository),
+            deleteArticle = DeleteArticle(newsRepository),
+            selectArticle = SelectArticle(newsRepository),
+            selectArticles = SelectArticles(newsRepository)
         )
     }
 
