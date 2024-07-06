@@ -18,6 +18,9 @@ fun ArticleList(
     articles: List<Article>,
     onClick: (Article) -> Unit
 ) {
+    if (articles.isEmpty()) {
+        EmptyScreen()
+    }
     LazyColumn(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(MediumPadding1),
@@ -37,7 +40,7 @@ fun ArticleList(
     articles: LazyPagingItems<Article>,
     onClick: (Article) -> Unit
 ) {
-    val handlePagingResult = HandlePaddingResult(articles = articles)
+    val handlePagingResult = handlePaddingResult(articles = articles)
     if (handlePagingResult) {
         LazyColumn(
             modifier = modifier.fillMaxSize(),
@@ -56,7 +59,7 @@ fun ArticleList(
 
 
 @Composable
-fun HandlePaddingResult(
+fun handlePaddingResult(
     articles: LazyPagingItems<Article>
 ): Boolean {
 
@@ -74,6 +77,13 @@ fun HandlePaddingResult(
         }
 
         error != null -> {
+            EmptyScreen(
+                error = error
+            )
+            false
+        }
+
+        articles.itemCount == 0 -> {
             EmptyScreen()
             false
         }
